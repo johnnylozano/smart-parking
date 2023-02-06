@@ -92,8 +92,8 @@ export const NavLinks = styled(LinkScroll)`
   height: 100%;
   cursor: pointer;
 
-  &.active {
-    border-bottom: 3px solid #01bf71;
+  &:active {
+    border-bottom: 3px solid var(--clr-accent-blue);
   }
 `;
 
@@ -120,10 +120,10 @@ export const NavBtnLink = styled(LinkRouter)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 
-  &.hover {
+  &:hover {
     transition: all 0.2s ease-in-out;
     background-color: #fff;
-    color: #010606;
+    color: var(--clr-dark-blue);
   }
 `;
 
@@ -185,7 +185,7 @@ export const SidebarLink = styled(LinkScroll)`
   color: #fff;
   cursor: pointer;
 
-  &.hover {
+  &:hover {
     color: var(--clr-accent-blue);
     transition: 0.2s ease-in-out;
   }
@@ -209,7 +209,7 @@ export const SidebarRoute = styled(LinkRouter)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 
-  &.hover {
+  &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
