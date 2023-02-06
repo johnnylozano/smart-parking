@@ -3,24 +3,23 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  Link,
+  // Link,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
 import { Home } from "src/pages/home";
 import { Search } from "src/pages/search";
 import { Parking } from "src/pages/parking";
+import Navbar from "./components/Navbar";
 
 function App() {
   const Root = () => {
     return (
       <>
-        {/* temp navbar */}
-        <div className="">
-          <Link to="/">Home</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/parking">Parking</Link>
-        </div>
+        {/* 
+          !Todo: Create a new navbar
+        */}
+        <Navbar />
         <div>
           <Outlet />
         </div>
