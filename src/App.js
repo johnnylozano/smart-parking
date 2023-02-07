@@ -7,26 +7,19 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-import { Home } from "src/pages/home";
+import { Home } from "src/pages/home/home";
 import { Search } from "src/pages/search";
 import { Parking } from "src/pages/parking";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
 
 function App() {
   const Root = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleMenu = () => {
-      setIsOpen(!isOpen);
-    };
-
     return (
       <>
         {/* 
           !Todo: Create a new navbar
         */}
-        <Navbar toggle={toggleMenu} />
+        <Navbar />
         <div>
           <Outlet />
         </div>
