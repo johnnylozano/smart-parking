@@ -33,7 +33,7 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const FeaturesCard = styled.div`
-  background: #fff;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,11 +41,11 @@ export const FeaturesCard = styled.div`
   max-height: 340px;
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2 ease-in-out;
+  transition: all 0.2s ease;
 
   &:hover {
     transform: scale(1.02);
-    transition: all 0.2 ease-in-out;
+    transition: all 0.2 ease;
     cursor: pointer;
   }
 `;

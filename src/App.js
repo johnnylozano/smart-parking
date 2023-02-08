@@ -12,6 +12,7 @@ import { Search } from "src/pages/search";
 import { Parking } from "src/pages/parking";
 import Navbar from "./components/Navbar";
 import { SignIn } from "./pages/signin";
+import Footer from "./components/Footer";
 
 function App() {
   const Root = () => {
@@ -24,6 +25,7 @@ function App() {
         <div>
           <Outlet />
         </div>
+        <Footer />
       </>
     );
   };
