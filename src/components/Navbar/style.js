@@ -91,6 +91,13 @@ export const NavLinks = styled(LinkScroll)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.04);
+    color: #fff;
+  }
 
   &:active {
     border-bottom: 3px solid var(--clr-accent-blue);

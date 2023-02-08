@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const InfoContainer = styled.div`
   color: #fff;
   background: ${({ lightBg }) =>
+    // "radial-gradient(circle at 78% 32%, rgba(0, 39, 68, 1) 0%, rgba(4, 12, 24, 1) 34%)"
     lightBg
       ? "radial-gradient(circle at 78% 32%, rgba(0, 39, 68, 1) 0%, rgba(4, 12, 24, 1) 34%)"
       : "#0d0d0d"};

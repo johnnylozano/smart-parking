@@ -17,7 +17,7 @@ export const homeDataOne = {
 };
 
 export const homeDataTwo = {
-  id: "about",
+  id: "pricing",
   lightBg: true,
   lightText: true,
   lightTextDesc: true,
@@ -35,7 +35,7 @@ export const homeDataTwo = {
 };
 
 export const homeDataThree = {
-  id: "about",
+  id: "services",
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
@@ -45,7 +45,7 @@ export const homeDataThree = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
   buttonLabel: "Get Started",
   imgStart: false,
-  img: require("src/assets/img/garage-1.jpg"),
+  img: require("src/assets/img/city-driver.svg").default,
   alt: "Car",
   dark: true,
   primary: true,

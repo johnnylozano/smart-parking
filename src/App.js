@@ -11,6 +11,7 @@ import { Home } from "src/pages/home/home";
 import { Search } from "src/pages/search";
 import { Parking } from "src/pages/parking";
 import Navbar from "./components/Navbar";
+import { SignIn } from "./pages/signin";
 
 function App() {
   const Root = () => {
@@ -33,6 +34,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/parking" element={<Parking />} />
+        <Route path="signin" element={<SignIn />} />
       </Route>
     )
   );
