@@ -34,9 +34,9 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/parking" element={<Parking />} />
-        <Route path="signin" element={<SignIn />} />
+        <Route path="/search" exact element={<Search />} />
+        <Route path="/parking" exact element={<Parking />} />
+        <Route path="signin" exact element={<SignIn />} />
       </Route>
     )
   );

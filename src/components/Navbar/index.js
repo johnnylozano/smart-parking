@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { animateScroll as scroll } from "react-scroll";
 import {
   Nav,
   NavbarContainer,
@@ -61,29 +62,69 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  };
+
   return (
     <>
       <Sidebar isOpen={isOpen} toggleMenu={toggleMenu} />
       <Nav>
         <NavbarContainer>
-          <NavLogo to="/">
-            <img src={logo} alt="" />
+          <NavLogo to="/" onClick={toggleHome}>
+            <img src={logo} alt="Logo" />
           </NavLogo>
           <MobileMenu onClick={toggleMenu}>
             <FaBars />
           </MobileMenu>
           <NavMenu>
             <NavItem>
-              <NavLinks to="about">About</NavLinks>
+              <NavLinks
+                to="about"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+              >
+                About
+              </NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="features">Features</NavLinks>
+              <NavLinks
+                to="features"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+              >
+                Features
+              </NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="pricing">Pricing</NavLinks>
+              <NavLinks
+                to="pricing"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+              >
+                Pricing
+              </NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="services">Services</NavLinks>
+              <NavLinks
+                to="services"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+              >
+                Services
+              </NavLinks>
             </NavItem>
           </NavMenu>
           <NavBtn>
