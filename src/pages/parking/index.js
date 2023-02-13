@@ -12,8 +12,6 @@ import {
   Input,
 } from "./style";
 
-// TODO: Remove inputs and implement data fetching
-
 export const Parking = () => {
   const [spotsTaken, setSpotsTaken] = useState(0);
   const [totalSpots, setTotalSpots] = useState(255);

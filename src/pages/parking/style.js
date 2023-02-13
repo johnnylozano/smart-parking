@@ -17,10 +17,6 @@ export const Card = styled.div`
   align-items: center;
   max-width: 600px;
   margin-inline: auto;
-
-  @media (max-width: 480px) {
-    padding: 20px 10px;
-  }
 `;
 
 export const ProgressBarContainer = styled.div`
@@ -31,8 +27,8 @@ export const ProgressBarContainer = styled.div`
 
 export const ProgressBar = styled.div`
   position: relative;
-  max-width: 150px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   color: #fff;
   outline: 2px solid var(--clr-accent-blue);
@@ -90,8 +86,4 @@ export const Input = styled.input`
   padding: 10px;
   border-radius: 5px;
   border: 1;
-
-  @media (max-width: 480px) {
-    padding: 7px;
-  }
 `;
