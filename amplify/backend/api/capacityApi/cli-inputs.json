@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/capacity": {
+      "name": "/capacity",
+      "lambdaFunction": "capacityLambda",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

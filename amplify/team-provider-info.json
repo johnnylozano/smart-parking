@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-parking-dev-235314-authRole",
+      "UnauthRoleArn": "arn:aws:iam::990740015398:role/amplify-parking-dev-235314-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::990740015398:role/amplify-parking-dev-235314-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-parking-dev-235314-deployment",
+      "UnauthRoleName": "amplify-parking-dev-235314-unauthRole",
+      "StackName": "amplify-parking-dev-235314",
+      "StackId": "arn:aws:cloudformation:us-east-2:990740015398:stack/amplify-parking-dev-235314/f87ac540-bca3-11ed-ab78-0a91f248a73e",
+      "AmplifyAppId": "d28zothefsblue"
+    },
+    "categories": {
+      "auth": {
+        "parkingd429c889": {}
+      },
+      "storage": {
+        "Garage": {
+          "tableName": "Garage",
+          "region": "us-east-2",
+          "arn": "arn:aws:dynamodb:us-east-2:990740015398:table/Garage",
+          "partitionKeyName": "Index",
+          "partitionKeyType": "N"
+        }
+      },
+      "function": {
+        "capacityLambda": {
+          "deploymentBucketName": "amplify-parking-dev-235314-deployment",
+          "s3Key": "amplify-builds/capacityLambda-5a397254704c456c4879-build.zip"
+        }
+      },
+      "api": {
+        "capacityApi": {}
+      }
+    }
+  }
+}

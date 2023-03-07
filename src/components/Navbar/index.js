@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import {
   Nav,
@@ -10,6 +10,8 @@ import {
   NavLinks,
   NavBtn,
   NavBtnLink,
+  NavBtnSignOut,
+  SidebarSignOut,
 } from "./style";
 import {
   SidebarContainer,
@@ -23,6 +25,13 @@ import {
 } from "./style";
 import { FaBars } from "react-icons/fa";
 import logo from "src/assets/logo/Logo.svg";
+import { AuthContext } from "src/context/AuthProvider";
+// AWS Auth
+import { Amplify, Auth } from "aws-amplify";
+import awsconfig from "src/aws-exports";
+import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+Amplify.configure(awsconfig);
 
 const Sidebar = ({ isOpen, toggleMenu }) => {
   return (
@@ -47,7 +56,15 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
             </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
-            <SidebarRoute to="/signin">Sign In</SidebarRoute>
+            {/* {!Auth ? (
+              <Authenticator>
+                {({ signOut }) => (
+                  <SidebarSignOut onClick={signOut}>Sign Out</SidebarSignOut>
+                )}
+              </Authenticator>
+            ) : (
+              <SidebarRoute to="/signin">Sign In</SidebarRoute>
+            )} */}
           </SideBtnWrap>
         </SidebarWrapper>
       </SidebarContainer>
@@ -65,6 +82,10 @@ const Navbar = () => {
   const toggleHome = () => {
     scroll.scrollToTop();
   };
+
+  const { isAuthenticated, handleLogout } = useContext(AuthContext);
+
+  useEffect(() => {}, [isAuthenticated]);
 
   return (
     <>
@@ -128,7 +149,11 @@ const Navbar = () => {
             </NavItem>
           </NavMenu>
           <NavBtn>
-            <NavBtnLink to="/signin">Sign In</NavBtnLink>
+            {isAuthenticated ? (
+              <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
+            ) : (
+              <NavBtnLink to="/signin">Sign In</NavBtnLink>
+            )}
           </NavBtn>
         </NavbarContainer>
       </Nav>

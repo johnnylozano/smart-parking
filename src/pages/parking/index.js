@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { API } from "aws-amplify";
 import {
   Card,
   CardContainer,
@@ -27,6 +28,17 @@ export const Parking = () => {
   const handleTotalSpots = (event) => {
     setTotalSpots(event.target.value);
   };
+
+  useEffect(() => {
+    API.get("capacityApi", "/capacity")
+      .then((capacityRes) => {
+        setSpotsTaken(capacityRes[0].Capacity);
+        console.log(capacityRes);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <CardContainer>

@@ -142,6 +142,27 @@ export const NavBtnLink = styled(LinkRouter)`
   }
 `;
 
+export const NavBtnSignOut = styled.button`
+  border-radius: 6px;
+  background-color: var(--clr-accent-blue);
+  white-space: nowrap;
+  padding: 10px 26px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #fff;
+    color: var(--clr-dark-blue);
+  }
+`;
+
 /* === SIDEBAR === */
 
 export const SidebarContainer = styled.aside`
@@ -212,6 +233,26 @@ export const SideBtnWrap = styled.div`
 `;
 
 export const SidebarRoute = styled(LinkRouter)`
+  border-radius: 6px;
+  background: var(--clr-accent-blue);
+  white-space: nowrap;
+  padding: 16px 64px;
+  color: #010606;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #010606;
+  }
+`;
+
+export const SidebarSignOut = styled.button`
   border-radius: 6px;
   background: var(--clr-accent-blue);
   white-space: nowrap;
