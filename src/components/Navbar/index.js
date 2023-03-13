@@ -11,7 +11,6 @@ import {
   NavBtn,
   NavBtnLink,
   NavBtnSignOut,
-  SidebarSignOut,
 } from "./style";
 import {
   SidebarContainer,
@@ -21,19 +20,19 @@ import {
   SidebarMenu,
   SidebarLink,
   SideBtnWrap,
-  SidebarRoute,
 } from "./style";
 import { FaBars } from "react-icons/fa";
 import logo from "src/assets/logo/Logo.svg";
 import { AuthContext } from "src/context/AuthProvider";
 // AWS Auth
-import { Amplify, Auth } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import awsconfig from "src/aws-exports";
-import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 Amplify.configure(awsconfig);
 
 const Sidebar = ({ isOpen, toggleMenu }) => {
+  const { isAuthenticated, handleLogout } = useContext(AuthContext);
+
   return (
     <>
       <SidebarContainer isOpen={isOpen} onClick={toggleMenu}>
@@ -56,15 +55,11 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
             </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
-            {/* {!Auth ? (
-              <Authenticator>
-                {({ signOut }) => (
-                  <SidebarSignOut onClick={signOut}>Sign Out</SidebarSignOut>
-                )}
-              </Authenticator>
+            {isAuthenticated ? (
+              <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
             ) : (
-              <SidebarRoute to="/signin">Sign In</SidebarRoute>
-            )} */}
+              <NavBtnLink to="/signin">Sign In</NavBtnLink>
+            )}
           </SideBtnWrap>
         </SidebarWrapper>
       </SidebarContainer>
