@@ -2,7 +2,6 @@ import { createContext, useEffect, useState, useCallback } from "react";
 // AWS Auth
 import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "src/aws-exports";
-import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 Amplify.configure(awsconfig);
 
