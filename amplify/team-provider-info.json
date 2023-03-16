@@ -27,7 +27,7 @@
       "function": {
         "capacityLambda": {
           "deploymentBucketName": "amplify-parking-dev-235314-deployment",
-          "s3Key": "amplify-builds/capacityLambda-5a397254704c456c4879-build.zip"
+          "s3Key": "amplify-builds/capacityLambda-767349777a644942396f-build.zip"
         }
       },
       "api": {

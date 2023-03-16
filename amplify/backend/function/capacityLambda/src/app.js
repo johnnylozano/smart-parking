@@ -60,8 +60,6 @@ const convertUrlType = (param, type) => {
 app.get(path, function (req, res) {
   let scanParams = {
     TableName: tableName,
-    Limit: 1,
-    ScanIndexForward: false,
   };
 
   dynamodb.scan(scanParams, (err, data) => {

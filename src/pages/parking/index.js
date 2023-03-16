@@ -29,10 +29,20 @@ export const Parking = () => {
     setTotalSpots(event.target.value);
   };
 
+  const getTotalCapacity = (jsonRes) => {
+    let capacityTotal = 0;
+    for (let i in jsonRes) {
+      capacityTotal += parseInt(jsonRes[i].Direction);
+    }
+    if (capacityTotal < 0) return 0;
+
+    return capacityTotal;
+  };
+
   useEffect(() => {
     API.get("capacityApi", "/capacity")
       .then((capacityRes) => {
-        setSpotsTaken(capacityRes[0].Capacity);
+        setSpotsTaken(getTotalCapacity(capacityRes));
         console.log(capacityRes);
       })
       .catch((error) => {
