@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
 
 export const Card = styled.div`
   background-color: var(--clr-dark-blue);
-  padding: 60px 40px;
+  padding: 60px 80px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px var(--clr-accent-blue);
   display: flex;
@@ -77,7 +77,7 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 10px;
 `;
 
 export const Label = styled.label`
@@ -86,12 +86,15 @@ export const Label = styled.label`
   color: #fff;
 `;
 
-export const Input = styled.input`
-  padding: 10px;
+export const Input = styled.p`
+  padding: 5px 10px;
   border-radius: 5px;
   border: 1;
+  color: #fff;
+  font-weight: 500;
+  font-size: 21px;
 
   @media (max-width: 480px) {
-    padding: 7px;
+    padding: 2px 7px;
   }
 `;

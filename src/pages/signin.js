@@ -1,12 +1,10 @@
 import { Authenticator } from "@aws-amplify/ui-react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "src/context/AuthProvider";
 import { Navigate } from "react-router-dom";
 
 export const SignIn = () => {
   const { isAuthenticated, handleLogin } = useContext(AuthContext);
-
-  useEffect(() => {}, [isAuthenticated]);
 
   return (
     <>

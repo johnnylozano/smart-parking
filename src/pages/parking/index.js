@@ -13,21 +13,11 @@ import {
   Input,
 } from "./style";
 
-// TODO: Remove inputs and implement data fetching
-
 export const Parking = () => {
   const [spotsTaken, setSpotsTaken] = useState(0);
   const [totalSpots, setTotalSpots] = useState(255);
   const circleRef = useRef();
   const percent = (spotsTaken / totalSpots) * 100;
-
-  const handleSpotsTaken = (event) => {
-    setSpotsTaken(event.target.value);
-  };
-
-  const handleTotalSpots = (event) => {
-    setTotalSpots(event.target.value);
-  };
 
   const getTotalCapacity = (jsonRes) => {
     let capacityTotal = 0;
@@ -71,19 +61,11 @@ export const Parking = () => {
         <InputContainer>
           <InputGroup>
             <Label>Spots Taken:</Label>
-            <Input
-              type="number"
-              value={spotsTaken}
-              onChange={handleSpotsTaken}
-            />
+            <Input>{spotsTaken}</Input>
           </InputGroup>
           <InputGroup>
             <Label>Total Spots:</Label>
-            <Input
-              type="number"
-              value={totalSpots}
-              onChange={handleTotalSpots}
-            />
+            <Input>{totalSpots}</Input>
           </InputGroup>
         </InputContainer>
       </Card>
