@@ -3,6 +3,7 @@ import { AccountForm } from "./AccountForm";
 import { CarForm } from "./CarForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { UserForm } from "./UserForm";
+import Logo from "src/assets/logo/Logo.svg";
 
 const INITIAL_DATA = {
   firstName: "",
@@ -44,7 +45,10 @@ export const SignUp = () => {
         "custom:ksuId": data.ksuId,
       },
     };
+    // Todo: data sends to db, UserData sends to AWS
     console.log(UserData);
+    delete data.password;
+    console.log(data);
   }
   return (
     <>
@@ -65,6 +69,11 @@ export const SignUp = () => {
       >
         <div>
           <form onSubmit={onSubmit}>
+            <img
+              src={Logo}
+              alt=""
+              style={{ display: "block", marginInline: "auto" }}
+            />
             <div
               style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
             >

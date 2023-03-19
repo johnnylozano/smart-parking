@@ -29,7 +29,7 @@ function App() {
           !Todo: Create a new navbar
         */}
         <Navbar />
-        <div>
+        <div style={{ backgroundColor: "#0d0d0d" }}>
           <Outlet />
         </div>
         <Footer />
@@ -43,6 +43,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/parking" exact element={<Parking />} />
+        <Route path="/signin" exact element={<SignIn />} />
         <Route path="/signup" exact element={<SignUp />} />
       </Route>
     )
