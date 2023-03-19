@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useCallback } from "react";
+import { createContext, useState, useCallback } from "react";
 // AWS Auth
 import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "src/aws-exports";
@@ -23,16 +23,19 @@ export function AuthProvider(props) {
       });
   }, [setIsAuthenticated]);
 
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
-  useEffect(() => {}, [isAuthenticated]);
+  async function signIn(data) {
+    try {
+      const user = await Auth.signIn(data.email, data.password);
+      if (user) {
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.log("error signing in", error);
+    }
+  }
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, handleLogout, handleLogin }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, handleLogout, signIn }}>
       {props.children}
     </AuthContext.Provider>
   );

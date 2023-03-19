@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import Logo from "src/assets/logo/Logo.svg";
+import { AuthContext } from "src/context/AuthProvider";
 
 const INITIAL_DATA = {
   email: "",
@@ -7,6 +9,8 @@ const INITIAL_DATA = {
 };
 
 export const SignIn = () => {
+  const { signIn, isAuthenticated } = useContext(AuthContext);
+
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields) {
     setData((prev) => {
@@ -16,7 +20,7 @@ export const SignIn = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(data);
+    signIn(data);
   }
   return (
     <>
@@ -36,6 +40,7 @@ export const SignIn = () => {
         }}
       >
         <div>
+          {isAuthenticated && <Navigate to="/" />}
           <form onSubmit={onSubmit}>
             <img
               src={Logo}
