@@ -9,7 +9,7 @@ const INITIAL_DATA = {
 };
 
 export const SignIn = () => {
-  const { signIn, isAuthenticated } = useContext(AuthContext);
+  const { signIn, isAuthenticated, invalidLogin } = useContext(AuthContext);
 
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields) {
@@ -73,6 +73,7 @@ export const SignIn = () => {
                 onChange={(e) => updateFields({ password: e.target.value })}
               />
             </div>
+            <p style={{ marginTop: "1rem", color: "red" }}>{invalidLogin}</p>
             <div
               style={{
                 marginTop: "1rem",

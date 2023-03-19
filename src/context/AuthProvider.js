@@ -9,6 +9,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [invalidLogin, setInvalidLogin] = useState("");
 
   const handleLogout = useCallback(() => {
     // Call the Auth.signOut() method to log the user out
@@ -27,15 +28,18 @@ export function AuthProvider(props) {
     try {
       const user = await Auth.signIn(data.email, data.password);
       if (user) {
+        setInvalidLogin("");
         setIsAuthenticated(true);
       }
     } catch (error) {
-      console.log("error signing in", error);
+      setInvalidLogin("Invalid login or password");
     }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, handleLogout, signIn }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, handleLogout, signIn, invalidLogin }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
