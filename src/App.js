@@ -18,6 +18,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
+import { SignUp } from "./pages/signup";
 Amplify.configure(awsconfig);
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/parking" exact element={<Parking />} />
-        <Route path="/signin" exact element={<SignIn />} />
+        <Route path="/signup" exact element={<SignUp />} />
       </Route>
     )
   );

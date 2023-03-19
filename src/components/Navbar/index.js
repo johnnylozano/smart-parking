@@ -147,7 +147,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
             ) : (
-              <NavBtnLink to="/signin">Sign In</NavBtnLink>
+              <NavBtnLink to="/signup">Sign In</NavBtnLink>
             )}
           </NavBtn>
         </NavbarContainer>
