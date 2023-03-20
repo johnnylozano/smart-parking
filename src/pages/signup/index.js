@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AccountForm } from "./AccountForm";
 import { CarForm } from "./CarForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { UserForm } from "./UserForm";
 import Logo from "src/assets/logo/Logo.svg";
+import { Link } from "react-router-dom";
+import { AuthContext } from "src/context/AuthProvider";
 
 const INITIAL_DATA = {
   firstName: "",
@@ -13,11 +15,14 @@ const INITIAL_DATA = {
   carModel: "",
   carYear: "",
   carColor: "",
+  licensePlate: "",
   email: "",
   password: "",
 };
 
 export const SignUp = () => {
+  const { signUp } = useContext(AuthContext);
+
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields) {
     setData((prev) => {
@@ -39,16 +44,32 @@ export const SignUp = () => {
     console.log(data);
 
     const UserData = {
-      email: data.email,
+      username: data.email,
       password: data.password,
-      customAttributes: {
+      attributes: {
+        email: data.email,
         "custom:ksuId": data.ksuId,
+        "custom:FirstName": data.firstName,
+        "custom:LastName": data.lastName,
+        "custom:CarMake": data.carMake,
+        "custom:CarModel": data.carModel,
+        "custom:CarYear": data.carYear,
+        "custom:CarColor": data.carColor,
+        "custom:LicensePlate": data.licensePlate,
       },
     };
-    // Todo: data sends to db, UserData sends to AWS
-    console.log(UserData);
     delete data.password;
-    console.log(data);
+    /*   
+  carMake: "",
+  carModel: "",
+  carYear: "",
+  carColor: "",
+  firstName: "",
+  lastName: "",
+   */
+    // Todo: data sends to db { data }
+
+    signUp(UserData);
   }
   return (
     <>
@@ -75,14 +96,21 @@ export const SignUp = () => {
               style={{ display: "block", marginInline: "auto" }}
             />
             <div
-              style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+              style={{ position: "absolute", top: "0.5rem", right: "1.5rem" }}
             >
               {currentStepIndex + 1} / {steps.length}
             </div>
             {step}
+
+            {isFirstStep && (
+              <Link to="/signup" style={{ marginTop: "2rem" }}>
+                Already Registered? Login
+              </Link>
+            )}
+
             <div
               style={{
-                marginTop: "1rem",
+                marginTop: "1.5rem",
                 display: "flex",
                 gap: "0.5rem",
                 justifyContent: "flex-end",

@@ -5,6 +5,7 @@ export function CarForm({
   carModel,
   carYear,
   carColor,
+  licensePlate,
   updateFields,
 }) {
   return (
@@ -37,6 +38,13 @@ export function CarForm({
         type="text"
         value={carColor}
         onChange={(e) => updateFields({ carColor: e.target.value })}
+      />
+      <label>License Plate</label>
+      <input
+        required
+        type="text"
+        value={licensePlate}
+        onChange={(e) => updateFields({ licensePlate: e.target.value })}
       />
     </FormWrapper>
   );

@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState } from "react";
 // AWS Auth
 import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "src/aws-exports";
@@ -11,7 +11,7 @@ export function AuthProvider(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [invalidLogin, setInvalidLogin] = useState("");
 
-  const handleLogout = useCallback(() => {
+  const handleLogout = () => {
     // Call the Auth.signOut() method to log the user out
     Auth.signOut()
       .then(() => {
@@ -22,7 +22,7 @@ export function AuthProvider(props) {
       .catch((error) => {
         console.log("Error signing out:", error);
       });
-  }, [setIsAuthenticated]);
+  };
 
   async function signIn(data) {
     try {
@@ -36,9 +36,20 @@ export function AuthProvider(props) {
     }
   }
 
+  async function signUp(userData) {
+    try {
+      const { user } = await Auth.signUp(userData);
+      if (user) {
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.log("error signing up:", error);
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, handleLogout, signIn, invalidLogin }}
+      value={{ isAuthenticated, handleLogout, signIn, signUp, invalidLogin }}
     >
       {props.children}
     </AuthContext.Provider>

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Logo from "src/assets/logo/Logo.svg";
 import { AuthContext } from "src/context/AuthProvider";
 
@@ -82,7 +82,7 @@ export const SignIn = () => {
                 justifyContent: "flex-end",
               }}
             >
-              <p>Create an account</p>
+              <Link to="/signup">Create an account</Link>
               <button type="submit">Login</button>
             </div>
           </form>
