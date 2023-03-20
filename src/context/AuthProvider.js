@@ -9,20 +9,18 @@ export const AuthContext = createContext();
 
 export function AuthProvider(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [invalidLogin, setInvalidLogin] = useState("");
+  const [usernameToVerify, setUsernameToVerify] = useState("");
 
-  const handleLogout = () => {
-    // Call the Auth.signOut() method to log the user out
-    Auth.signOut()
-      .then(() => {
-        console.log("User logged out");
-        // Update the Auth state to reflect the change in authentication status
-        setIsAuthenticated(false);
-      })
-      .catch((error) => {
-        console.log("Error signing out:", error);
-      });
-  };
+  async function handleLogout() {
+    try {
+      await Auth.signOut();
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.log("Error signing out:", error);
+    }
+  }
 
   async function signIn(data) {
     try {
@@ -41,15 +39,33 @@ export function AuthProvider(props) {
       const { user } = await Auth.signUp(userData);
       if (user) {
         setIsAuthenticated(true);
+        setUsernameToVerify(userData.email);
+        setIsRegistered(true);
       }
     } catch (error) {
       console.log("error signing up:", error);
     }
   }
 
+  async function confirmSignUp(userCode) {
+    try {
+      await Auth.confirmSignUp();
+    } catch (error) {
+      console.log("error confirming sign up", error);
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, handleLogout, signIn, signUp, invalidLogin }}
+      value={{
+        isAuthenticated,
+        isRegistered,
+        invalidLogin,
+        handleLogout,
+        signIn,
+        signUp,
+        confirmSignUp,
+      }}
     >
       {props.children}
     </AuthContext.Provider>

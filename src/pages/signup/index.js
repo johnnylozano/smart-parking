@@ -4,7 +4,7 @@ import { CarForm } from "./CarForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { UserForm } from "./UserForm";
 import Logo from "src/assets/logo/Logo.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "src/context/AuthProvider";
 
 const INITIAL_DATA = {
@@ -21,7 +21,7 @@ const INITIAL_DATA = {
 };
 
 export const SignUp = () => {
-  const { signUp } = useContext(AuthContext);
+  const { signUp, isRegistered } = useContext(AuthContext);
 
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields) {
@@ -59,16 +59,8 @@ export const SignUp = () => {
       },
     };
     delete data.password;
-    /*   
-  carMake: "",
-  carModel: "",
-  carYear: "",
-  carColor: "",
-  firstName: "",
-  lastName: "",
-   */
-    // Todo: data sends to db { data }
 
+    // Todo: data sends to db { data }
     signUp(UserData);
   }
   return (
@@ -101,13 +93,15 @@ export const SignUp = () => {
               {currentStepIndex + 1} / {steps.length}
             </div>
             {step}
-
             {isFirstStep && (
               <Link to="/signup" style={{ marginTop: "2rem" }}>
                 Already Registered? Login
               </Link>
             )}
-
+            {
+              // Todo: Verification screen
+              isRegistered && <Navigate to="/" />
+            }
             <div
               style={{
                 marginTop: "1.5rem",
