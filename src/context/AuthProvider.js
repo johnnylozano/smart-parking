@@ -31,6 +31,7 @@ export function AuthProvider(props) {
       }
     } catch (error) {
       setInvalidLogin("Invalid login or password");
+      setIsAuthenticated(false);
     }
   }
 
@@ -38,20 +39,22 @@ export function AuthProvider(props) {
     try {
       const { user } = await Auth.signUp(userData);
       if (user) {
-        setIsAuthenticated(true);
-        setUsernameToVerify(userData.email);
+        setUsernameToVerify(userData.attributes.email);
         setIsRegistered(true);
       }
     } catch (error) {
       console.log("error signing up:", error);
+      setIsRegistered(false);
     }
   }
 
   async function confirmSignUp(userCode) {
     try {
-      await Auth.confirmSignUp();
+      await Auth.confirmSignUp(usernameToVerify, userCode.code);
+      setIsAuthenticated(true);
     } catch (error) {
       console.log("error confirming sign up", error);
+      setIsRegistered(false);
     }
   }
 

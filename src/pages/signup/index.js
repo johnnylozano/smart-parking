@@ -40,8 +40,6 @@ export const SignUp = () => {
   function onSubmit(e) {
     e.preventDefault();
     if (!isLastStep) return next();
-    alert("Submit");
-    console.log(data);
 
     const UserData = {
       username: data.email,
@@ -98,10 +96,7 @@ export const SignUp = () => {
                 Already Registered? Login
               </Link>
             )}
-            {
-              // Todo: Verification screen
-              isRegistered && <Navigate to="/" />
-            }
+            {isRegistered && <Navigate to="/verification" />}
             <div
               style={{
                 marginTop: "1.5rem",
