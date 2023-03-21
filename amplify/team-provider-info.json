@@ -22,16 +22,28 @@
           "arn": "arn:aws:dynamodb:us-east-2:990740015398:table/Garage",
           "partitionKeyName": "Index",
           "partitionKeyType": "N"
+        },
+        "UserList": {
+          "tableName": "UserList",
+          "region": "us-east-2",
+          "arn": "arn:aws:dynamodb:us-east-2:990740015398:table/UserList",
+          "partitionKeyName": "ksuId",
+          "partitionKeyType": "N"
         }
       },
       "function": {
         "capacityLambda": {
           "deploymentBucketName": "amplify-parking-dev-235314-deployment",
           "s3Key": "amplify-builds/capacityLambda-767349777a644942396f-build.zip"
+        },
+        "userLambda": {
+          "deploymentBucketName": "amplify-parking-dev-235314-deployment",
+          "s3Key": "amplify-builds/userLambda-4b495959586269503676-build.zip"
         }
       },
       "api": {
-        "capacityApi": {}
+        "capacityApi": {},
+        "userApi": {}
       }
     }
   }

@@ -13,6 +13,20 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "userApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -60,6 +74,25 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "userLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -76,6 +109,22 @@
         {
           "category": "function",
           "resourceName": "capacityLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_userLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_userLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userLambda"
         }
       ]
     },
@@ -118,10 +167,56 @@
           "resourceName": "Garage"
         }
       ]
+    },
+    "AMPLIFY_storage_UserList_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ]
+    },
+    "AMPLIFY_storage_UserList_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ]
+    },
+    "AMPLIFY_storage_UserList_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ]
+    },
+    "AMPLIFY_storage_UserList_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ]
+    },
+    "AMPLIFY_storage_UserList_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "UserList"
+        }
+      ]
     }
   },
   "storage": {
     "Garage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "UserList": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB",

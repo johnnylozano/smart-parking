@@ -6,11 +6,12 @@ import { UserForm } from "./UserForm";
 import Logo from "src/assets/logo/Logo.svg";
 import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "src/context/AuthProvider";
+import { API } from "aws-amplify";
 
 const INITIAL_DATA = {
+  ksuId: "",
   firstName: "",
   lastName: "",
-  ksuId: "",
   carMake: "",
   carModel: "",
   carYear: "",
@@ -58,8 +59,32 @@ export const SignUp = () => {
     };
     delete data.password;
 
-    // Todo: data sends to db { data }
     signUp(UserData);
+
+    const apiName = "userApi"; // replace this with your api name.
+    const path = "/user"; //replace this with the path you have configured on your API
+    const myInit = {
+      body: {
+        ksuId: parseInt(data.ksuId),
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        carMake: data.carMake,
+        carModel: data.carModel,
+        carYear: data.carYear,
+        carColor: data.carColor,
+        licensePlate: data.licensePlate,
+      }, // replace this with attributes you need
+      headers: {}, // OPTIONAL
+    };
+
+    API.post(apiName, path, myInit)
+      .then((response) => {
+        console.log("Sent success response: ", response);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   }
   return (
     <>
