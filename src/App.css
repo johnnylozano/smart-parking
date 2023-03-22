@@ -19,3 +19,21 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+/*! === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 11px;
+  background: #24232b;
+}
+
+::-webkit-scrollbar-track {
+  background: #24232b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(110, 118, 129, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7a797e;
+}
