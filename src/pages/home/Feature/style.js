@@ -33,7 +33,7 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const FeaturesCard = styled.div`
-  background: #f5f5f5;
+  background: #efefef;
   display: flex;
   flex-direction: column;
   align-items: center;

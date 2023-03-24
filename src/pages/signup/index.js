@@ -117,7 +117,7 @@ export const SignUp = () => {
             </div>
             {step}
             {isFirstStep && (
-              <Link to="/signup" style={{ marginTop: "2rem" }}>
+              <Link to="/signin" style={{ marginTop: "2rem" }}>
                 Already Registered? Login
               </Link>
             )}

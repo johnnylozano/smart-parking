@@ -1,16 +1,30 @@
 import { Button } from "src/components/Button";
 import { AiOutlineSearch } from "react-icons/ai";
+import Garage from "src/assets/img/ksu.jpg";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import { useState } from "react";
 
 export const Search = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   function onSubmit(e) {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1500);
   }
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_API_KEY,
+  });
 
   return (
     <>
       <div
         style={{
-          height: "92vh",
+          height: "91.5vh",
           width: "100%",
           display: "flex",
         }}
@@ -32,7 +46,9 @@ export const Search = () => {
               justifyContent: "center",
               borderRadius: "8px",
               padding: "4px 8px",
-              margin: "20px 10px",
+              marginTop: "15px",
+              marginBottom: "20px",
+              marginInline: "auto",
             }}
           >
             {/* // Todo: Create pseudo ::placeholder to change color */}
@@ -67,17 +83,69 @@ export const Search = () => {
               <AiOutlineSearch fill="#fff" />
             </button>
           </form>
+          {/*// Todo: Address card */}
+          <div
+            style={{
+              marginInline: "auto",
+              backgroundColor: "#29282b",
+              width: "94%",
+              padding: "20px 20px",
+              borderRadius: "4px",
+              boxShadow:
+                "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12)",
+            }}
+          >
+            <img
+              src={Garage}
+              alt="Garage"
+              style={{
+                display: "block",
+                width: "100%",
+                borderRadius: "3px",
+              }}
+            />
+            <h3
+              style={{
+                color: "var(--clr-accent-blue)",
+                marginTop: "20px",
+                marginBottom: "10px",
+                fontSize: "18px",
+                lineHeight: "16px",
+                fontWeight: "500",
+                letterSpacing: "1.4px",
+              }}
+            >
+              Decepticars
+            </h3>
+            <h2 style={{ color: "#fff" }}>Kennesaw Location</h2>
+            <p style={{ marginBottom: "15px", color: "#efefef" }}>
+              Open 8am - 5pm
+            </p>
+            <Button to="/parking" primary="true">
+              View capacity
+            </Button>
+          </div>
         </aside>
-        <div
-          style={{ backgroundColor: "blue", width: "85vw", height: "100%" }}
-        ></div>
-        {/* <h1>Search</h1>
-        <div>
-          <Button to="/parking" primary="true">
-            Search for Parking
-          </Button>
-        </div> */}
+        {isSubmitting || !isLoaded ? (
+          <div
+            style={{ backgroundColor: "blue", width: "85vw", height: "100%" }}
+          ></div>
+        ) : (
+          <Map />
+        )}
       </div>
     </>
   );
 };
+
+function Map() {
+  return (
+    <GoogleMap
+      zoom={18}
+      center={{ lat: 34.03702, lng: -84.58038 }}
+      mapContainerClassName="map-container"
+    >
+      <MarkerF position={{ lat: 34.03702, lng: -84.58038 }} />
+    </GoogleMap>
+  );
+}

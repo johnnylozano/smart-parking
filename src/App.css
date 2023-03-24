@@ -2,6 +2,7 @@
   --clr-blk: #0d0d0d;
   --clr-dark-blue: #002744;
   --clr-accent-blue: #18a0fb;
+  --clr-semi-blue: #137dc4;
 }
 
 * {
@@ -18,6 +19,11 @@ body,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.map-container {
+  width: 85vw;
+  height: 100%;
 }
 
 /*! === SCROLLBAR === */
