@@ -3,10 +3,20 @@ import { AccountForm } from "./AccountForm";
 import { CarForm } from "./CarForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { UserForm } from "./UserForm";
-import Logo from "src/assets/logo/Logo.svg";
-import { Link, Navigate } from "react-router-dom";
+import Logo from "src/assets/logo/LogoTextless.svg";
+import { Navigate } from "react-router-dom";
 import { AuthContext } from "src/context/AuthProvider";
 import { API } from "aws-amplify";
+import {
+  Section,
+  FormLogin,
+  FormContent,
+  Form,
+  FieldButtonField,
+  SignupLink,
+  LoginButton,
+  FormLink,
+} from "./style";
 
 const INITIAL_DATA = {
   ksuId: "",
@@ -88,58 +98,62 @@ export const SignUp = () => {
   }
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          background: "white",
-          border: "1px solid black",
-          padding: "2rem",
-          paddingTop: "3rem",
-          paddingBottom: "2rem",
-          marginTop: "4rem",
-          marginBottom: "4rem",
-          marginInline: "auto",
-          borderRadius: "0.5rem",
-          maxWidth: "max-content",
-        }}
-      >
-        <div>
-          <form onSubmit={onSubmit}>
+      <Section>
+        <FormLogin>
+          <FormContent>
             <img
               src={Logo}
               alt=""
-              style={{ display: "block", marginInline: "auto" }}
-            />
-            <div
-              style={{ position: "absolute", top: "0.5rem", right: "1.5rem" }}
-            >
-              {currentStepIndex + 1} / {steps.length}
-            </div>
-            {step}
-            {isFirstStep && (
-              <Link to="/signin" style={{ marginTop: "2rem" }}>
-                Already Registered? Login
-              </Link>
-            )}
-            {isRegistered && <Navigate to="/verification" />}
-            <div
+              height="80"
               style={{
-                marginTop: "1.5rem",
-                display: "flex",
-                gap: "0.5rem",
-                justifyContent: "flex-end",
+                display: "block",
+                marginInline: "auto",
+                marginBottom: "10px",
               }}
-            >
-              {!isFirstStep && (
-                <button type="button" onClick={back}>
-                  Back
-                </button>
+            />
+            <Form onSubmit={onSubmit}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "0.5rem",
+                  right: "1.5rem",
+                  color: "#fff",
+                }}
+              >
+                {currentStepIndex + 1} / {steps.length}
+              </div>
+              {step}
+
+              {isRegistered && <Navigate to="/verification" />}
+              <FieldButtonField
+                style={{
+                  marginTop: "1.5rem",
+                  display: "flex",
+                  gap: "0.5rem",
+                  justifyContent: "flex-end",
+                }}
+              >
+                {!isFirstStep && (
+                  <LoginButton type="button" onClick={back}>
+                    Back
+                  </LoginButton>
+                )}
+                <LoginButton type="submit">
+                  {isLastStep ? "Submit" : "Next"}
+                </LoginButton>
+              </FieldButtonField>
+              {isFirstStep && (
+                <FormLink
+                  style={{ display: "flex", marginTop: "1.5rem", gap: "1rem" }}
+                >
+                  <span>Already have an account?</span>
+                  <SignupLink to="/signin">Login</SignupLink>
+                </FormLink>
               )}
-              <button type="submit">{isLastStep ? "Submit" : "Next"}</button>
-            </div>
-          </form>
-        </div>
-      </div>
+            </Form>
+          </FormContent>
+        </FormLogin>
+      </Section>
     </>
   );
 };

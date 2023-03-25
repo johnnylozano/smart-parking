@@ -19,23 +19,23 @@ const Feature = () => {
       <FeaturesWrapper>
         <FeaturesCard>
           <FeaturesIcon src={Icon1} />
-          <FeaturesH2>Reduce Expenses</FeaturesH2>
+          <FeaturesH2>Real-time Availability</FeaturesH2>
           <FeaturesP>
-            We help reduce your fees and increase you overall revenue.
+            Instantly know where parking spots are available.
           </FeaturesP>
         </FeaturesCard>
         <FeaturesCard>
           <FeaturesIcon src={Icon2} />
-          <FeaturesH2>Virtual Offices</FeaturesH2>
+          <FeaturesH2>Global Accessibility</FeaturesH2>
           <FeaturesP>
-            You can access our platform online anywhere in the world.
+            Access our platform online anywhere in the world.
           </FeaturesP>
         </FeaturesCard>
         <FeaturesCard>
           <FeaturesIcon src={Icon3} />
-          <FeaturesH2>Premium Benefits</FeaturesH2>
+          <FeaturesH2>Navigation Assistance</FeaturesH2>
           <FeaturesP>
-            Unlock our special membership card that returns 5% cash back.
+            Get turn-by-turn directions to available parking spots.
           </FeaturesP>
         </FeaturesCard>
       </FeaturesWrapper>
