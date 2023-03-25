@@ -58,16 +58,27 @@ export function AuthProvider(props) {
     }
   }
 
+  async function resendConfirmationCode(usernameToVerify) {
+    try {
+      await Auth.resendSignUp(usernameToVerify);
+      console.log("code resent successfully");
+    } catch (err) {
+      console.log("error resending code: ", err);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
         isRegistered,
         invalidLogin,
+        usernameToVerify,
         handleLogout,
         signIn,
         signUp,
         confirmSignUp,
+        resendConfirmationCode,
       }}
     >
       {props.children}

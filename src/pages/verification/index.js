@@ -1,14 +1,32 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Logo from "src/assets/logo/Logo.svg";
+import Logo from "src/assets/logo/LogoTextless.svg";
 import { AuthContext } from "src/context/AuthProvider";
+import {
+  Form,
+  FormContent,
+  Header,
+  FieldInputField,
+  Input,
+  FieldButtonField,
+  LoginButton,
+  FormLogin,
+  Section,
+  FormLink,
+  ResendLink,
+} from "./style";
 
 const INITIAL_DATA = {
   code: "",
 };
 
 export const Verification = () => {
-  const { confirmSignUp, isAuthenticated } = useContext(AuthContext);
+  const {
+    confirmSignUp,
+    isAuthenticated,
+    resendConfirmationCode,
+    usernameToVerify,
+  } = useContext(AuthContext);
 
   const [data, setData] = useState(INITIAL_DATA);
   function updateFields(fields) {
@@ -23,63 +41,68 @@ export const Verification = () => {
   }
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          background: "white",
-          border: "1px solid black",
-          padding: "2rem",
-          paddingTop: "3rem",
-          paddingBottom: "2rem",
-          marginTop: "4rem",
-          marginBottom: "4rem",
-          marginInline: "auto",
-          borderRadius: "0.5rem",
-          maxWidth: "max-content",
-        }}
-      >
-        <div>
-          {isAuthenticated && <Navigate to="/" />}
-          <form onSubmit={onSubmit}>
+      <Section>
+        <FormLogin>
+          <FormContent>
+            {isAuthenticated && <Navigate to="/" />}
             <img
               src={Logo}
               alt=""
-              style={{ display: "block", marginInline: "auto" }}
+              height="80"
+              style={{
+                display: "block",
+                marginInline: "auto",
+                marginBottom: "10px",
+              }}
             />
-            <h2
+            <Header
               style={{ textAlign: "center", margin: 0, marginBottom: "2rem" }}
             >
               Enter Verification Code
-            </h2>
-            <div
+            </Header>
+            <p
               style={{
-                display: "grid",
-                gap: "1rem 0.5rem",
-                justifyContent: "flex-start",
-                gridTemplateColumns: "auto minmax(auto, 400px)",
+                color: "#efefef",
+                marginInline: "auto",
+                textAlign: "center",
+                width: "100%",
               }}
             >
-              <label>Verification</label>
-              <input
-                autoFocus
-                required
-                type="text"
-                onChange={(e) => updateFields({ code: e.target.value })}
-              />
-            </div>
-            <div
-              style={{
-                marginTop: "1rem",
-                display: "flex",
-                gap: "0.5rem",
-                justifyContent: "flex-end",
-              }}
-            >
-              <button type="submit">Login</button>
-            </div>
-          </form>
-        </div>
-      </div>
+              A 5-digit code has been sent to your email address. Enter the code
+              to verify your account.
+            </p>
+            <Form onSubmit={onSubmit}>
+              <FieldInputField>
+                <Input
+                  autoFocus
+                  required
+                  type="text"
+                  placeholder="Enter Verification Code"
+                  onChange={(e) => updateFields({ code: e.target.value })}
+                />
+              </FieldInputField>
+              <FormLink
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                }}
+              >
+                <span style={{ color: "#fff" }}>Didn't get the code?</span>
+                <ResendLink
+                  type="button"
+                  onClick={() => resendConfirmationCode(usernameToVerify)}
+                >
+                  Resend
+                </ResendLink>
+              </FormLink>
+              <FieldButtonField>
+                <LoginButton type="submit">Verify Account</LoginButton>
+              </FieldButtonField>
+            </Form>
+          </FormContent>
+        </FormLogin>
+      </Section>
     </>
   );
 };
