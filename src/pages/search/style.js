@@ -88,3 +88,36 @@ export const TimeText = styled.p`
   margin-bottom: 15px;
   color: #efefef;
 `;
+
+export const LoadingBackground = styled.div`
+  background-color: #d3d3d3;
+  width: 85vw;
+  height: 100%;
+  display: grid;
+  place-items: center;
+`;
+
+export const LoaderWrapper = styled.div`
+  width: 80px;
+  height: 80px;
+`;
+
+export const Loader = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 5px solid #162534;
+  border-top-color: #2cd9ff;
+  border-bottom-color: #18a0fb;
+  border-radius: 50%;
+  animation: rotate 5s linear infinite;
+`;
+
+export const InnerLoader = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 5px solid #162534;
+  border-top-color: #2cd9ff;
+  border-bottom-color: #18a0fb;
+  border-radius: 50%;
+  animation: rotate 5s linear infinite;
+`;

@@ -14,6 +14,10 @@ import {
   CompanyText,
   LocationText,
   TimeText,
+  LoadingBackground,
+  LoaderWrapper,
+  Loader,
+  InnerLoader,
 } from "./style";
 
 export const Search = () => {
@@ -45,21 +49,37 @@ export const Search = () => {
               <AiOutlineSearch fill="#fff" />
             </SearchButton>
           </SearchForm>
-          <AddressCard>
-            <GarageImage src={Garage} alt="Garage" />
-            <CompanyText>Decepticars</CompanyText>
-            <LocationText>Kennesaw Location</LocationText>
-            <TimeText>Open 8am - 5pm</TimeText>
-            <Button to="/parking" primary="true">
-              View capacity
-            </Button>
-          </AddressCard>
+          {isSubmitting ? (
+            <AddressCard
+              style={{ display: "grid", placeItems: "center", padding: "80px" }}
+            >
+              <LoaderWrapper>
+                <Loader>
+                  <InnerLoader></InnerLoader>
+                </Loader>
+              </LoaderWrapper>
+            </AddressCard>
+          ) : (
+            <AddressCard>
+              <GarageImage src={Garage} alt="Garage" />
+              <CompanyText>Decepticars</CompanyText>
+              <LocationText>Kennesaw Location</LocationText>
+              <TimeText>Open 8am - 5pm</TimeText>
+              <Button to="/parking" primary="true">
+                View capacity
+              </Button>
+            </AddressCard>
+          )}
         </SideSearch>
         {/* //Todo: Loading Spinner */}
         {isSubmitting || !isLoaded ? (
-          <div
-            style={{ backgroundColor: "blue", width: "85vw", height: "100%" }}
-          ></div>
+          <LoadingBackground>
+            <LoaderWrapper>
+              <Loader>
+                <InnerLoader></InnerLoader>
+              </Loader>
+            </LoaderWrapper>
+          </LoadingBackground>
         ) : (
           <Map />
         )}
