@@ -26,9 +26,6 @@ function App() {
   const Root = () => {
     return (
       <>
-        {/* 
-          !Todo: Create a new navbar
-        */}
         <Navbar />
         <div style={{ backgroundColor: "#0d0d0d" }}>
           <Outlet />
