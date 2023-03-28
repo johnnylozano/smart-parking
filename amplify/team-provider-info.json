@@ -38,7 +38,7 @@
         },
         "userLambda": {
           "deploymentBucketName": "amplify-parking-dev-235314-deployment",
-          "s3Key": "amplify-builds/userLambda-4b495959586269503676-build.zip"
+          "s3Key": "amplify-builds/userLambda-316258374c4b6548556c-build.zip"
         }
       },
       "api": {

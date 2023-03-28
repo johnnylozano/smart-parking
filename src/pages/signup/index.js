@@ -29,6 +29,7 @@ const INITIAL_DATA = {
   licensePlate: "",
   email: "",
   password: "",
+  passType: "",
 };
 
 export const SignUp = () => {
@@ -65,14 +66,15 @@ export const SignUp = () => {
         "custom:CarYear": data.carYear,
         "custom:CarColor": data.carColor,
         "custom:LicensePlate": data.licensePlate,
+        "custom:passType": data.passType,
       },
     };
     delete data.password;
 
     signUp(UserData);
 
-    const apiName = "userApi"; // replace this with your api name.
-    const path = "/user"; //replace this with the path you have configured on your API
+    const apiName = "userApi";
+    const path = "/user";
     const myInit = {
       body: {
         ksuId: parseInt(data.ksuId),
@@ -84,8 +86,9 @@ export const SignUp = () => {
         carYear: data.carYear,
         carColor: data.carColor,
         licensePlate: data.licensePlate,
-      }, // replace this with attributes you need
-      headers: {}, // OPTIONAL
+        passType: data.passType,
+      },
+      headers: {},
     };
 
     API.post(apiName, path, myInit)
