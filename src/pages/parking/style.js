@@ -27,13 +27,21 @@ export const ProgressBarContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -khtml-border-radius: 50%;
 `;
 
 export const ProgressBar = styled.div`
+  display: inline-block;
   position: relative;
   max-width: 150px;
   max-height: 150px;
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -khtml-border-radius: 50%;
   color: #fff;
   outline: 2px solid var(--clr-accent-blue);
   outline-offset: -1px;
@@ -50,7 +58,10 @@ export const ProgressBar = styled.div`
     content: "";
     width: 110px;
     height: 110px;
-    border-radius: inherit;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -khtml-border-radius: 50%;
     outline: inherit;
   }
 `;
