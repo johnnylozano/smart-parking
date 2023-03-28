@@ -71,7 +71,6 @@ export const Search = () => {
             </AddressCard>
           )}
         </SideSearch>
-        {/* //Todo: Loading Spinner */}
         {isSubmitting || !isLoaded ? (
           <LoadingBackground>
             <LoaderWrapper>
