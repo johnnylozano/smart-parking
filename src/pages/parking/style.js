@@ -43,8 +43,7 @@ export const ProgressBar = styled.div`
   -moz-border-radius: 50%;
   -khtml-border-radius: 50%;
   color: #fff;
-  outline: 2px solid var(--clr-accent-blue);
-  outline-offset: -1px;
+  box-shadow: 0 0 0 2px var(--clr-accent-blue);
 
   &::after,
   .number {
@@ -62,11 +61,13 @@ export const ProgressBar = styled.div`
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -khtml-border-radius: 50%;
-    outline: inherit;
+    box-shadow: inherit;
   }
 `;
 
-export const Circle = styled.svg`
+export const Circle = styled.svg.attrs({
+  xmlns: "http://www.w3.org/2000/svg",
+})`
   stroke-dasharray: 410;
   stroke-dashoffset: ${(props) => ((100 - props.percent) / 100) * 410};
   transform: rotate(-90deg);
