@@ -99,7 +99,7 @@ export const NavLinks = styled(LinkScroll)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     transition: all 0.2s ease-in-out;

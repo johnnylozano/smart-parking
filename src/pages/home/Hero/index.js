@@ -23,7 +23,7 @@ const Hero = () => {
   return (
     <HeroContainer>
       <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
+        <VideoBg autoPlay={true} loop={true} controls={false} playsInline={true} muted src={Video} type="video/mp4" />
       </HeroBg>
       <HeroContent>
         <HeroH1>Find A Garage Near You</HeroH1>
