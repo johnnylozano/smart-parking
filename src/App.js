@@ -20,6 +20,7 @@ import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
 import { SignUp } from "./pages/signup";
 import { Verification } from "./pages/verification";
+import { AdminDashboard } from "./pages/admin";
 Amplify.configure(awsconfig);
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/signin" exact element={<SignIn />} />
         <Route path="/signup" exact element={<SignUp />} />
         <Route path="/verification" exact element={<Verification />} />
+        <Route path="/admin" exact element={<AdminDashboard />} />
       </Route>
     )
   );

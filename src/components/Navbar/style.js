@@ -63,7 +63,7 @@ export const NavLogo = styled(LinkRouter)`
 export const MobileMenu = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 830px) {
     display: block;
     position: absolute;
     top: 0;
@@ -82,7 +82,7 @@ export const NavMenu = styled.ul`
   text-align: center;
   margin-left: -22px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 830px) {
     display: none;
   }
 `;
@@ -116,7 +116,7 @@ export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 830px) {
     display: none;
   }
 `;
@@ -256,7 +256,7 @@ export const SidebarSignOut = styled.button`
   border-radius: 6px;
   background: var(--clr-accent-blue);
   white-space: nowrap;
-  padding: 16px 64px;
+  padding: 16px 32px;
   color: #010606;
   font-size: 16px;
   outline: none;

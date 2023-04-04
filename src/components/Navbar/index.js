@@ -57,8 +57,16 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           <SideBtnWrap>
             {isAuthenticated ? (
               <>
-                <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
-                {/* <NavBtnLink to="/admin">Admin Dashboard</NavBtnLink> */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "3px",
+                  }}
+                >
+                  <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
+                  <NavBtnLink to="/admin">Admin Dashboard</NavBtnLink>
+                </div>
               </>
             ) : (
               <NavBtnLink to="/signin">Sign In</NavBtnLink>
@@ -150,7 +158,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <div style={{ display: "flex", gap: "3px" }}>
                 <NavBtnSignOut onClick={handleLogout}>Sign Out</NavBtnSignOut>
-                {/* <NavBtnLink to="/admin">Dashboard</NavBtnLink> */}
+                <NavBtnLink to="/admin">Dashboard</NavBtnLink>
               </div>
             ) : (
               <NavBtnLink to="/signin">Sign In</NavBtnLink>
