@@ -2,9 +2,15 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   background: #0d0d0d;
-  height: 480px;
+  margin: 30px;
   display: grid;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 830px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 `;
 
 export const Card = styled.div`
@@ -20,6 +26,38 @@ export const Card = styled.div`
 
   @media (max-width: 480px) {
     padding: 20px 10px;
+  }
+`;
+
+export const BarCard = styled.div`
+  background-color: var(--clr-dark-blue);
+  height: 393px;
+  margin-inline: auto;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px var(--clr-accent-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  @media (max-width: 830px) {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 600px) {
+    height: 250px;
+    padding: 20px 20px;
+  }
+
+  @media (max-width: 500px) {
+    height: 200px;
+    padding: 10px 10px;
+  }
+
+  @media (max-width: 420px) {
+    height: 150px;
   }
 `;
 
