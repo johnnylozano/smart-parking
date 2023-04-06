@@ -16,7 +16,7 @@ export const TabContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: lightblue;
+  background: var(--clr-accent-blue);
   margin: 5px;
   margin-top: 10px;
   padding: 10px;
