@@ -68,7 +68,6 @@ export const Parking = () => {
     API.get("capacityApi", "/capacity")
       .then((capacityRes) => {
         setSpotsTaken(getTotalCapacity(capacityRes));
-        console.log(capacityRes);
       })
       .catch((error) => {
         console.error(error);
