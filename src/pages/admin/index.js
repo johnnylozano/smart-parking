@@ -73,6 +73,7 @@ export const AdminDashboard = () => {
         validPass: false,
         time: item["Time:"],
         Direction: item.Direction > 0 ? "enter" : "exit",
+        ksuId: item.id,
       };
     });
 
@@ -82,6 +83,7 @@ export const AdminDashboard = () => {
         return {
           ...item,
           Direction: item.Direction,
+          ksuId: item.id,
         };
       });
 
@@ -169,6 +171,7 @@ const UnverifiedLog = ({ unverifiedLog }) => {
     },
     { field: "Direction" },
     { field: "validPass" },
+    { field: "ksuId" },
   ]);
 
   return (
