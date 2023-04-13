@@ -21,6 +21,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { SignUp } from "./pages/signup";
 import { Verification } from "./pages/verification";
 import { AdminDashboard } from "./pages/admin";
+import { QueryClient, QueryClientProvider } from "react-query";
 Amplify.configure(awsconfig);
 
 function App() {
@@ -50,11 +51,15 @@ function App() {
     )
   );
 
+  const queryClient = new QueryClient();
+
   return (
     <div className="App">
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </QueryClientProvider>
     </div>
   );
 }

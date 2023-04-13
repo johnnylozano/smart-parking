@@ -148,3 +148,28 @@ export const Input = styled.p`
     padding: 2px 7px;
   }
 `;
+
+export const LoaderWrapper = styled.div`
+  width: 100px;
+  height: 100px;
+`;
+
+export const Loader = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 5px solid #162534;
+  border-top-color: #2cd9ff;
+  border-bottom-color: #18a0fb;
+  border-radius: 50%;
+  animation: rotate 5s linear infinite;
+`;
+
+export const InnerLoader = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 5px solid #162534;
+  border-top-color: #2cd9ff;
+  border-bottom-color: #18a0fb;
+  border-radius: 50%;
+  animation: rotate 5s linear infinite;
+`;

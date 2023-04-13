@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect } from "react";
-import { API } from "aws-amplify";
+import { useState, useRef } from "react";
 import {
   Card,
   CardContainer,
@@ -12,9 +11,13 @@ import {
   ProgressBarContainer,
   Input,
   BarCard,
+  Loader,
+  InnerLoader,
+  LoaderWrapper,
 } from "./style";
 import { BarChart } from "./BarChart";
 import { PredictionData } from "./PredictionData";
+import { useCapacity } from "./useCapacity";
 
 const chartOptions = {
   scales: {
@@ -39,8 +42,8 @@ const chartOptions = {
 };
 
 export const Parking = () => {
-  const [spotsTaken, setSpotsTaken] = useState(0);
-  const [totalSpots, setTotalSpots] = useState(600);
+  const [totalSpots] = useState(600);
+  const { spotsTaken, isLoading, isError, error } = useCapacity();
   const [predictionData, setPredictionData] = useState({
     labels: PredictionData.map((data) => data.time),
     datasets: [
@@ -54,43 +57,36 @@ export const Parking = () => {
   const circleRef = useRef();
   const percent = (spotsTaken / totalSpots) * 100;
 
-  const getTotalCapacity = (jsonRes) => {
-    let capacityTotal = 0;
-    for (let i in jsonRes) {
-      capacityTotal += parseInt(jsonRes[i].Direction);
-    }
-    if (capacityTotal < 0) return 0;
-
-    return capacityTotal;
-  };
-
-  useEffect(() => {
-    API.get("capacityApi", "/capacity")
-      .then((capacityRes) => {
-        setSpotsTaken(getTotalCapacity(capacityRes));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   return (
     <CardContainer>
       <Card>
         <ProgressBarContainer>
-          <ProgressBar>
-            <Circle height="150" width="150" percent={percent} ref={circleRef}>
-              <circle
-                cx="75"
-                cy="75"
-                r="65"
-                stroke="#18a0fb"
-                strokeWidth="20"
-                fill="none"
-              />
-            </Circle>
-            <Number className="number">{`${percent.toFixed(0)} %`}</Number>
-          </ProgressBar>
+          {isLoading ? (
+            <LoaderWrapper>
+              <Loader>
+                <InnerLoader></InnerLoader>
+              </Loader>
+            </LoaderWrapper>
+          ) : (
+            <ProgressBar>
+              <Circle
+                height="150"
+                width="150"
+                percent={percent}
+                ref={circleRef}
+              >
+                <circle
+                  cx="75"
+                  cy="75"
+                  r="65"
+                  stroke="#18a0fb"
+                  strokeWidth="20"
+                  fill="none"
+                />
+              </Circle>
+              <Number className="number">{`${percent.toFixed(0)} %`}</Number>
+            </ProgressBar>
+          )}
         </ProgressBarContainer>
         <InputContainer>
           <InputGroup>
