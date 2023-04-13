@@ -13,7 +13,6 @@ export const useCapacity = (timerInterval = 50000) => {
 
   const fetchCapacity = async () => {
     const capacityRes = await API.get("capacityApi", "/capacity");
-    console.log(capacityRes);
     return getTotalCapacity(capacityRes);
   };
 
