@@ -44,6 +44,7 @@ const chartOptions = {
 
 export const Parking = () => {
   const [totalSpots] = useState(600);
+  const [selectedDate, setSelectedDate] = useState(null);
   const { spotsTaken, isLoading, isError, error } = useCapacity();
   const [predictionData, setPredictionData] = useState({
     labels: PredictionData.map((data) => data.time),
@@ -55,33 +56,60 @@ export const Parking = () => {
     ],
   });
 
+  const handleDateChange = (event) => {
+    setSelectedDate(parseInt(event.target.value, 10));
+  };
+
+  function parseCustomPythonArray(jsonString) {
+    // Replace single quotes with double quotes
+    const jsonStringWithDoubleQuotes = jsonString.replace(/'/g, '"');
+
+    // Replace Python's "array(" with "[" and ")" with "]"
+    const jsonStringWithBrackets = jsonStringWithDoubleQuotes
+      .replace(/array\(/g, "[")
+      .replace(/\)/g, "]");
+
+    // Remove trailing commas after numbers
+    const jsonStringWithoutTrailingCommas = jsonStringWithBrackets.replace(
+      /,(\s*])+/g,
+      "]"
+    );
+
+    // Add missing zeros to decimal numbers without digits after the decimal point
+    const jsonStringWithFixedDecimals = jsonStringWithoutTrailingCommas.replace(
+      /(\d+)\./g,
+      "$1.0"
+    );
+
+    return JSON.parse(jsonStringWithFixedDecimals);
+  }
+
   const fetchPredictionData = () => {
-    Axios.get("http://192.168.202.33:5000/", {
+    Axios.get("http://172.20.10.2:5000/", {
       headers: {
         Accept: "application/json",
       },
     }).then((res) => {
-      const subsetData = [];
-      for (let i = 0; i < 19; i++) {
-        const predict = res.data[i].prediction;
-        subsetData.push(predict);
-      }
-      console.log(res.data);
-      // setPredictionData({
-      //   ...predictionData,
-      //   datasets: [
-      //     {
-      //       ...predictionData.datasets[0],
-      //       data: subsetData,
-      //     },
-      //   ],
-      // });
+      const responseObject = parseCustomPythonArray(res.data);
+      const predictionArray = responseObject[selectedDate - 1];
+
+      setPredictionData((prevState) => ({
+        ...prevState,
+        datasets: [
+          {
+            ...prevState.datasets[0],
+            data: predictionArray.flat(),
+          },
+        ],
+      }));
     });
   };
 
   useEffect(() => {
-    fetchPredictionData();
-  }, []);
+    if (selectedDate) {
+      fetchPredictionData();
+    }
+  }, [selectedDate]);
 
   const circleRef = useRef();
   const percent = (spotsTaken / totalSpots) * 100;
@@ -129,7 +157,11 @@ export const Parking = () => {
         </InputContainer>
       </Card>
       <BarCard>
-        <BarChart chartData={predictionData} chartOptions={chartOptions} />
+        <BarChart
+          key={JSON.stringify(predictionData)}
+          chartData={predictionData}
+          chartOptions={chartOptions}
+        />
         <select
           name=""
           id=""
@@ -140,6 +172,7 @@ export const Parking = () => {
             bottom: "0",
             marginBottom: "20px",
           }}
+          onChange={handleDateChange}
         >
           <option value="default">Choose date</option>
           <option value="1">1</option>
