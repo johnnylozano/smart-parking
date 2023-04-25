@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import Axios from "axios";
 import {
   Card,
   CardContainer,
@@ -53,6 +54,34 @@ export const Parking = () => {
       },
     ],
   });
+
+  const fetchPredictionData = () => {
+    Axios.get("http://192.168.202.33:5000/", {
+      headers: {
+        Accept: "application/json",
+      },
+    }).then((res) => {
+      const subsetData = [];
+      for (let i = 0; i < 19; i++) {
+        const predict = res.data[i].prediction;
+        subsetData.push(predict);
+      }
+      console.log(res.data);
+      // setPredictionData({
+      //   ...predictionData,
+      //   datasets: [
+      //     {
+      //       ...predictionData.datasets[0],
+      //       data: subsetData,
+      //     },
+      //   ],
+      // });
+    });
+  };
+
+  useEffect(() => {
+    fetchPredictionData();
+  }, []);
 
   const circleRef = useRef();
   const percent = (spotsTaken / totalSpots) * 100;
