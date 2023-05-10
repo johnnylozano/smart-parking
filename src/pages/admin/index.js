@@ -35,7 +35,7 @@ export const AdminDashboard = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [activeTab]);
 
   useEffect(() => {
     const returnList = CapacityList.map((item) => {

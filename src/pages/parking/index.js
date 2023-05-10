@@ -85,7 +85,7 @@ export const Parking = () => {
   }
 
   const fetchPredictionData = () => {
-    Axios.get("http://172.20.10.2:5000/", {
+    Axios.get("http://192.168.202.33:5000/", {
       headers: {
         Accept: "application/json",
       },
