@@ -2,6 +2,9 @@
 
 ---
 
+### Current Status of AWS and Google API Integration
+As of July 2023, we have disabled the AWS and Google API integration due to ongoing costs. This means certain features, such as real-time data and user authentication, are currently inactive. The website, however, is still accessible for demonstration purposes, showcasing its interface and design elements.
+
 **Live Demo:** [https://decepticars.netlify.app/](https://decepticars.netlify.app/)
 
 **Report:** [Final Report PDF](./docs/FinalReport.pdf)
